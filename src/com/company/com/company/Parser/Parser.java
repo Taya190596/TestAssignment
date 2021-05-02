@@ -1,12 +1,15 @@
 package com.company.Parser;
 
+import com.company.Number.UNumber;
 import com.company.NumberType.NumberType;
 import com.company.Operator.Operator;
 import com.company.OperatorType.OperatorType;
+import com.company.RomNumbersConverter.RomNumbersConverter;
+import com.company.OperatorTypeDetector.OperatorTypeDetector;
 
 public class Parser {
-    private final com.company.RomNumbersConverter.RomNumbersConverter converter = new com.company.RomNumbersConverter.RomNumbersConverter();
-    private final com.company.OperatorTypeDetector.OperatorTypeDetector detector = new com.company.OperatorTypeDetector.OperatorTypeDetector();
+    private final RomNumbersConverter converter = new RomNumbersConverter();
+    private final OperatorTypeDetector detector = new OperatorTypeDetector();
 
     private boolean IsOperator(char c){
         return c == '+' || c == '-' || c == '*' || c == '/';
@@ -34,12 +37,12 @@ public class Parser {
     public Operator getOperator(String input) throws Exception {
         input = input.replace(" ", "");
         String[] parts = new String[0];
-        String operator = "";
+        char operator = (char)0;
         boolean operatorFound = false;
         for (int i = 0, n = input.length(); i < n; ++i){
             if (IsOperator(input.charAt(i))) {
                 operatorFound = true;
-                operator = String.valueOf(input.charAt(i));
+                operator = input.charAt(i);
                 parts = split(input, input.charAt(i));
                 break;
             }
@@ -72,8 +75,8 @@ public class Parser {
 
         OperatorType opType = detector.GetOperatorType(operator);
 
-        com.company.Number.Number op1 = new com.company.Number.Number(operand1, op1type);
-        com.company.Number.Number op2 = new com.company.Number.Number(operand2, op2type);
+        UNumber op1 = new UNumber(operand1, op1type);
+        UNumber op2 = new UNumber(operand2, op2type);
 
         return new Operator(op1, op2, opType);
     }

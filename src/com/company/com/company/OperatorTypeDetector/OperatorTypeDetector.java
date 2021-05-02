@@ -3,15 +3,15 @@ package com.company.OperatorTypeDetector;
 import com.company.OperatorType.OperatorType;
 
 public class OperatorTypeDetector {
-    public OperatorType GetOperatorType(String operator) throws Exception {
+    public OperatorType GetOperatorType(char operator) throws Exception {
         switch (operator){
-            case "+":
+            case '+':
                 return OperatorType.Add;
-            case "-":
+            case '-':
                 return OperatorType.Sub;
-            case "*":
+            case '*':
                 return OperatorType.Mul;
-            case "/":
+            case '/':
                 return OperatorType.Div;
             default: throw new Exception("Invalid operator");
         }

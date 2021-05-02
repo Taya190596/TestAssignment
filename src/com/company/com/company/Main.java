@@ -1,19 +1,14 @@
 package com.company;
 
 import java.util.Scanner;
+import com.company.Engine.ExpressionProcessor.ExpressionProcessor;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
-	    com.company.Engine.ExpressionProcessor.ExpressionProcessor expressionProcessor = new com.company.Engine.ExpressionProcessor.ExpressionProcessor();
-
-        String input;
-        boolean noExit = false;
+	    ExpressionProcessor expressionProcessor = new ExpressionProcessor();
         Scanner sc = new Scanner(System.in);
-	    do{
-            input = sc.nextLine();
-            noExit = expressionProcessor.process(input);
-        }
-	    while (noExit);
+
+        for (String input = sc.nextLine(); expressionProcessor.process(input); input = sc.nextLine());
     }
 }

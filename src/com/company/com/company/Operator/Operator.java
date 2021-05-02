@@ -1,21 +1,24 @@
 package com.company.Operator;
 
-public class Operator{
-    private com.company.Number.Number _operand1;
-    private com.company.Number.Number _operand2;
-    private com.company.OperatorType.OperatorType _operatorType;
+import com.company.Number.UNumber;
+import com.company.OperatorType.OperatorType;
 
-    public Operator(com.company.Number.Number operand1, com.company.Number.Number operand2, com.company.OperatorType.OperatorType operatorType){
+public class Operator{
+    private final UNumber _operand1;
+    private final UNumber _operand2;
+    private final OperatorType _operatorType;
+
+    public Operator(UNumber operand1, UNumber operand2, OperatorType operatorType){
         _operand1 = operand1;
         _operand2 = operand2;
         _operatorType = operatorType;
     }
 
-    public com.company.Number.Number getOperand1(){
+    public UNumber getOperand1(){
         return _operand1;
     }
 
-    public com.company.Number.Number getOperand2(){
+    public UNumber getOperand2(){
         return _operand2;
     }
 
@@ -28,10 +31,9 @@ public class Operator{
             case Mul:
                 return _operand1.getNumber() * _operand2.getNumber();
             case Div:
-                if (_operand2.getNumber() == 0)
-                    throw new Exception("Positive infinity exception");
                 return _operand1.getNumber() / _operand2.getNumber();
-            default: throw new Exception("Undefined operator.");
+            default:
+                throw new Exception("Undefined operator.");
         }
     }
 }
